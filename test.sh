@@ -12,7 +12,8 @@ if [ -n "$msg" ]; then
     echo '请稍等...'
     git commit -m"${msg}"
     git pull
-      clear
+    clear
+    echo -e "Default \e[31mRed"
     echo -e "${RED}是否要push [Y/N]?"
     read y
     if [ $y == 'y' ]; then
