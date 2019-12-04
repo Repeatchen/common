@@ -24,9 +24,10 @@ git status
 echo "输入commit注解"
 read msg
 if [ -n "$msg" ]; then
+    demoFun 'sleep 3'
     git commit -m"${msg}"
     git pull
-    demoFun 'sleep 3'
+   
     clear
     echo -e "是否要push [Y/N]?"
     read y
