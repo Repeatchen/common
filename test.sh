@@ -9,8 +9,8 @@ read msg
 if [ -n "$msg" ]; then
     git commit -m"${msg}"
     git pull
-    read y
     echo '是否要push [Y/N]?'
+    read y
     if [ $y == 'y' ]; then
         git push
     else
