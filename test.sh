@@ -14,7 +14,7 @@ if [ -n "$msg" ]; then
     git pull
     clear
     echo -e "Default \e[31mRed"
-    echo -e "${RED}是否要push [Y/N]?"
+    echo -e "${GREEN}是否要push [Y/N]?"
     read y
     if [ $y == 'y' ]; then
         git push
