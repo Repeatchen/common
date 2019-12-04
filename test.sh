@@ -1,20 +1,34 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # cd ~/Desktop/project/new-manager/manager
 
+demoFun(){
+    killmyself="pkill -13 -f `basename $0`"
+ 
+    trap "$killmyself" sigint
+    
+    while true;do
+        for i in '-' '\\' '|' '/';do
+            printf "\r%s" $i
+            sleep 0.2
+        done
+    done &
+    
+    tmp="`bash -c \"$@\"`"
+    $killmyself
+    printf "\r%s\n" "$tmp"
+}
 echo '当前文件状态'
 git status
-git add -A
+git add .
 git status
 echo "输入commit注解"
 read msg
-GREEN='\e[1;32m' 
 if [ -n "$msg" ]; then
-    echo '请稍等...'
     git commit -m"${msg}"
     git pull
+    demoFun 'sleep 3'
     clear
-    echo -e "Default \e[31mRed"
-    echo -e "${GREEN}是否要push [Y/N]?"
+    echo -e "是否要push [Y/N]?"
     read y
     if [ $y == 'y' ]; then
         git push
