@@ -7,7 +7,7 @@ demoFun(){
     trap "$killmyself" sigint
     
     while true;do
-        for i in '-' '\\' '|' '/';do
+        for i in '-' '\' '|' '/';do
             printf "\r%s" $i
             sleep 0.2
         done
