@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 # cd ~/Desktop/project/new-manager/manager
+
 echo '当前文件状态'
 git status
 git add -A
@@ -7,8 +8,10 @@ git status
 echo "输入commit注解"
 read msg
 if [ -n "$msg" ]; then
+    echo '请稍等...'
     git commit -m"${msg}"
     git pull
+      clear
     echo '是否要push [Y/N]?'
     read y
     if [ $y == 'y' ]; then
