@@ -27,7 +27,6 @@ if [ -n "$msg" ]; then
     demoFun 'sleep 3'
     git commit -m"${msg}"
     git pull
-    clear
     echo -e "是否要push [Y/N]?"
     read y
     if [ $y == 'y' ]; then
