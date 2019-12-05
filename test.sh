@@ -29,7 +29,7 @@ if [ -n "$msg" ]; then
     git pull
     echo -e "是否要push [Y/N]?"
     read y
-    if [ $y == 'y' ]; then
+    if [ $y === 'y' ]; then
         git push
     else
         echo "完成add、commit、pull，别忘了push"
