@@ -15,7 +15,7 @@ demoFun(){
     
     tmp="`bash -c \"$@\"`"
     $killmyself
-    # printf "\r%s\n" "$tmp"
+    # printf "\r%s\n" c le a"$tmp"
 }
 echo '当前文件状态'
 git status
@@ -29,7 +29,7 @@ if [ -n "$msg" ]; then
     git pull
     echo -e "是否要push [Y/N]?"
     read y
-    if [ $y == 'y' -a $y == 'Y' ]; then
+    if [ $y == 'y' ]; then
         git push
     else
         echo "完成add、commit、pull，别忘了push"
