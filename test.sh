@@ -27,9 +27,9 @@ if [ -n "$msg" ]; then
     demoFun 'sleep 3'
     git commit -m"${msg}"
     git pull
-    echo -e "是否要push [y/n]?"
+    echo -e "是否要push [Y/N]?"
     read y
-    if [ $y == 'y' ]; then
+    if [ $y == 'y' && $y == 'Y' ]; then
         git push
     else
         echo "完成add、commit、pull，别忘了push"
