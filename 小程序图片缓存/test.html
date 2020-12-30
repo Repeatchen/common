@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="div1">
+        <img id='img1' src="https://oss.olayc.cn/F4D62CD07049B6F680E9D03B7CA8EE24.jpg" alt="" onreadystatechange="aa(this)" />
+    </p>
+</body>
+<style>
+    .div1 {
+        display: flex;
+    }
+</style>
+<script>
+    var a,b;
+    a = new Date();
+    var timer = setInterval(function () {
+        if (document.getElementById('img1').complete) {
+            clearInterval(timer);
+            b = new Date();
+            alert(`加载：${b-a}毫秒`)
+
+            // console.log(document.getElementById('img1').complete)
+        }
+    }, 10);
+   
+
+
+    // function aa(e) {
+    //     console.log(11111111)
+    //     console.log(e)
+    // }
+</script>
+
+</html>

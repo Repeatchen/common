@@ -61,7 +61,7 @@ const DateConver = {
                 return dateRet;
             }
         }
-        console.warn('当前不支持当前时间类型  '+strDate)
+        console.warn('dateFormat  当前不支持当前时间类型  '+strDate)
         return dateRet;
     },
     // 日期格式类型转换
@@ -75,7 +75,7 @@ const DateConver = {
             '6':'yyyy年MM月dd日 HH:mm:ss',
             '7':'M月d日',
             '8':'HH:mm:ss',
-            '9':'mm:ss',
+            '9':'HH:mm',
         };
         
         if(formatType.toString().length > 1){
@@ -98,7 +98,7 @@ const DateConver = {
         7：M月d日；8：HH:mm:ss；9：mm:ss）
     ****************************************************************************/
     ConvertDateToStr(dateTime, formatType) {
-        var dateRet = null;
+        var dateRet = '';
 
         if (!dateTime) {
             console.warn('当前日期为： '+ dateTime);
@@ -183,51 +183,29 @@ const DateConver = {
      -- 参数：beginDateStr：开始日期字符串
      --       endDateStr：结束日期字符串
     ****************************************************************************/
-    EquationDate(beginDateStr, endDateStr, type) {
+    EquationDate(beginDateStr, endDateStr) {
         if (!beginDateStr && !endDateStr) {
             console.warn('参数为： '+'开始时间'+beginDateStr+'  结束时间'+endDateStr);
-            return '';
+            return null;
         }
-        var regF = /^(\d{1,2}):(\d{1,2}):(\d{1,2})$/;
-        if(regF.test(beginDateStr)){
-            beginDateStr = '1901-01-01 ' + beginDateStr;
-            endDateStr = '1901-01-01 ' + endDateStr;
-        }
-        var days,hours,minutes,seconds = null;
+        var numRet = null;
         var beginDate =  DateConver.ConvertStrToDate(beginDateStr);
         var endDate =  DateConver.ConvertStrToDate(endDateStr);
-
         if (beginDate != null && endDate != null) {
-            //时间差的毫秒数
-            let diff = endDate.getTime() - beginDate.getTime(); 
-            //计算出相差天数
-            days = Math.floor(diff / (24 * 3600 * 1000)); 
+            //将时分秒毫秒设置为0
+            beginDate.setHours(0);
+            beginDate.setMinutes(0);
+            beginDate.setSeconds(0);
+            beginDate.setMilliseconds(0);
+            endDate.setHours(0);
+            endDate.setMinutes(0);
+            endDate.setSeconds(0);
+            endDate.setMilliseconds(0);
 
-            //计算出相差小时数
-            let leave1=diff%(24*3600*1000);
-            hours=Math.floor(leave1/(3600*1000));  
-
-            //计算出相差分钟数
-            let leave2=leave1%(3600*1000);       
-            minutes=Math.floor(leave2/(60*1000));
-
-            //计算出相差秒数
-            let leave3=leave2%(60*1000);      
-            seconds=Math.round(leave3/1000);
+            var milliseconds = endDate.getTime() - beginDate.getTime(); //时间差的毫秒数
+            numRet = Math.floor(milliseconds / (24 * 3600 * 1000)); //计算出相差天数
         }
-
-        switch (type) {
-            case 1:
-                return days;
-            case 2:
-                return hours;
-            case 3:
-                return minutes;
-            case 4:
-                return seconds;
-            default:
-                return '';
-        }
+        return numRet;
     },
 
     /****************************************************************************
@@ -235,7 +213,10 @@ const DateConver = {
      -- 参数：timestamp：时间戳
     ****************************************************************************/
    TimestampToDate(time){
-        
+        if(!time){
+            console.warn('参数为  '+time);
+            return '';
+        }
         var timestampDate =  DateConver.ConvertStrToDate(time);
         return timestampDate.getTime();
    }

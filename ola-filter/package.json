@@ -1,0 +1,16 @@
+{
+  "name": "ola-fliter",
+  "version": "0.0.2",
+  "description": "公共方法",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "fliter",
+    "javascript",
+    "js"
+  ],
+  "author": "fangyuchen",
+  "license": "ISC"
+}

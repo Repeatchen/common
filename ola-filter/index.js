@@ -2,7 +2,7 @@ import dateConver from './script/date';
 import bigNumber from './script/bignumber.min.js';
 
 
-const Tool = {
+const filter = {
     // 判断类型
     isNumber(value) {
         return Object.prototype.toString.call(value) == "[object Number]";
@@ -107,7 +107,6 @@ const Tool = {
      * @ps: 
      * @Date: 2019-12-10 13:56:30
     */
-    // 
     timestampDate(timestamp) {
         if(!timestamp){
             console.warn('timestampDate 参数为  '+timestamps);
@@ -124,7 +123,7 @@ const Tool = {
      * @Date: 2019-11-27 15:56:14
     */
    typeState2Text: function(val,state) {
-       if(!Tool.isEmpty(val)){
+       if(!Tool.isEmpty(val) && !state){
             function findCherries(fruit){
                 return fruit.value == state;
             }
@@ -250,4 +249,4 @@ const Tool = {
     },
 
 }
-export default Tool
+export default filter
